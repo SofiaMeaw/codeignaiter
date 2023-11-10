@@ -26,7 +26,7 @@ class Users extends BaseController
             $model->save(['email' => $this->request->getPost('email'),'password' => $this->request->getPost('password')]);
         }
         if(empty($model->errors())){
-            return redirect()->to(base_url() . 'Users');
+            return redirect()->to(base_url() . 'users');
         } else {
             $data['users'] = $model->get_all();
             $this->render_user_layout(['errors' => $model->errors(), 'users' => $data['users']]);
@@ -61,4 +61,32 @@ class Users extends BaseController
         return redirect()->to(base_url() . 'users');
 
     }
+
+    public function login(){
+        $model = new UsersModel();
+        
+        if($this->request->getMethod() === 'post')
+        {
+            $user = $model->login(['email'=> $this->request->getPost('email'),
+            'password'=> $this->request->getPost('password')]);
+
+            if(isset($user))
+            {
+                session()->set(['user'=> $user['id'], 'email'=> $user['email']]);
+                return redirect()->to(base_url() . 'users'); 
+            }
+
+            session()-> setFlashdata('login_error', 'Los datos ingresados no son correctos');
+        }
+
+        return redirect()-> to(base_url());
+
+    }
+
+    public function logout(){
+        
+        session()->destroy();
+        return redirect()-> to(base_url());
+        
+        }
 }

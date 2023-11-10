@@ -8,8 +8,12 @@
     <title>Usuarios</title>
 </head>
 <body>
-    <h1>Registro de usuarios</h1>
-
+    <?php if(isset(session()->user)){?>
+        <h1>Bienvenido <?= session()->email ?></h1>
+        <br>
+        <a class="nav-link" href="users/logout">Cerrar sesion</a>
+   <?php } ?>
+    
     <?php if (! empty($errors)): ?>
     <div class="alert alert-danger">
     <?php foreach ($errors as $field => $error): ?>

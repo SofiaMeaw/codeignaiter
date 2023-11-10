@@ -27,4 +27,10 @@ class UsersModel extends Model
     {
         return $this->where(['id' => $id])->first();
     }
+
+    public function login($data)
+    {
+        return $this->asArray()->where($data)->first();
+    }
+
 }
