@@ -9,6 +9,10 @@
             <input type="email" name="email" value="<?= $users['email']?>" required>
             <br>
 
+            <label for="email">Nombre</label>
+            <input type="text" name="name" value="<?= $users['name']?>" required>
+            <br>
+
             <label for="password">Contraseña</label>
             <input type="password" pattern="[0-9A-Za-z]{8}" name="password" value="<?= $users['password']?>" title="La contraseña debe ser de 8 caracteres alfanuméricos puede contener mayúsculas y minúsculas" required>
             <br>

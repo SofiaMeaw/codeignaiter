@@ -1,4 +1,13 @@
 <div class="container">
+    <?php if (isset(session()->login_error)) { ?>
+        <div class="alert alert-danger" role="alert">
+            <?= session()->login_error ?>
+        </div>
+    <?php } ?>
+
+</div>
+
+<div class="container">
     <form action="users/login" method="post">
         <div class="form-group">
             <legend>
@@ -18,16 +27,7 @@
 </div>
 
 <div class="container">
-    <?php if(isset(session()->login_error)) { ?>
-        <div class="alert alert-danger" role="alert">
-            <?= session()->login_error?>
-        </div>
-   <?php } ?>
-
-</div>
-
-<div class="container">
-    <form action="users/add" method="post">
+    <form action="users/add_user" method="post">
         <div class="form-group">
             <legend>
                 Nuevo usuario
@@ -35,6 +35,10 @@
 
             <label for="email">Email</label>
             <input type="email" name="email" value="" required>
+            <br>
+
+            <label for="name">Nombre</label>
+            <input type="text" name="name" value="" required>
             <br>
 
             <label for="password">Contraseña</label>
