@@ -8,7 +8,7 @@ class UsersModel extends Model
 
 {
     protected $table = 'user';
-    protected $allowedFields = ['email', 'password', 'file'];
+    protected $allowedFields = ['email', 'name', 'password', 'file'];
     protected $validationRules = [
         'email'        => 'required|valid_email|is_unique[user.email]'
     ];

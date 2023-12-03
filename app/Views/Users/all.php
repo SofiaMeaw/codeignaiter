@@ -5,8 +5,8 @@
     <div>
         <ul>
             <li><?= $item['email'] ?></li>
-            <a href="users/edit/<?= $item['id']?>">Editar</a>
-            <a href="users/delete/<?= $item['id']?>">Eliminar</a>
+            <a href="edit/<?= $item['id']?>">Editar</a>
+            <a href="delete/<?= $item['id']?>">Eliminar</a>
             <ul>
     </div>
 <?php endforeach; ?>

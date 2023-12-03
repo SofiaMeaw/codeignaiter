@@ -9,7 +9,7 @@
             <input type="email" name="email" value="<?= $users['email']?>" required>
             <br>
 
-            <label for="email">Nombre</label>
+            <label for="name">Nombre</label>
             <input type="text" name="name" value="<?= $users['name']?>" required>
             <br>
 

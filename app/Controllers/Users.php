@@ -14,12 +14,27 @@ class Users extends BaseController
         echo view('footer');
     }
 
+    public function render_admin_session($data)
+    {
+        echo view('header', $data);
+        echo view('Users/index', $data);
+        echo view('Users/all', $data);
+        echo view('footer');
+    }
+
     public function index($user_id)
     {
         $model = new UsersModel();
         $data['user'] = $model->get_by_id($user_id);
-        $data['files'] = json_decode($data['user']['file']);
-        $this->render_user_layout($data);
+        $data['files'] = json_decode($data['user']['file'] ?? []);
+        $data['role'] = $data['user']['role'];
+
+        if ($data['role'] === 'user') {
+            $this->render_user_layout($data);
+        } else {
+            $data['users'] = $model->get_all();
+            $this->render_admin_session($data);
+        }
     }
 
     public function add_user()
@@ -28,7 +43,7 @@ class Users extends BaseController
 
 
         if ($this->request->getMethod() === 'post') {
-            $model->save(['email' => $this->request->getPost('email'), 'password' => $this->request->getPost('password')]);
+            $model->save(['email' => $this->request->getPost('email'), 'name' => $this->request->getPost('name'), 'password' => $this->request->getPost('password')]);
         }
         if (empty($model->errors())) {
             return redirect()->to(base_url());
@@ -71,7 +86,7 @@ class Users extends BaseController
             $currentUser = $model->get_by_id($user_id);
             $currentFiles = json_decode($currentUser['file']);
 
-            $currentFiles = array_filter($currentFiles, function ($file) use($imageName) {
+            $currentFiles = array_filter($currentFiles, function ($file) use ($imageName) {
                 return $file != $imageName;
             });
 
@@ -98,10 +113,14 @@ class Users extends BaseController
         $model = new UsersModel();
 
         if ($this->request->getMethod() === 'post') {
-            $data = ['email' => $this->request->getPost('email'), 'password' => $this->request->getPost('password')];
+            $data = [
+                'email' => $this->request->getPost('email'), 
+                'password' => $this->request->getPost('password'), 
+                'name' => $this->request->getPost('name')
+            ];
             $model->update($id, $data);
 
-            return redirect()->to(base_url() . 'users');
+            return redirect()->to(base_url() . 'users/' . session()->user);
         }
     }
 
@@ -110,7 +129,7 @@ class Users extends BaseController
         $model = new UsersModel();
         $model->delete($id);
 
-        return redirect()->to(base_url() . 'users');
+        return redirect()->back();
     }
 
     public function login()
