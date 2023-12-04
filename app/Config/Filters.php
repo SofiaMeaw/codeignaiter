@@ -33,7 +33,7 @@ class Filters extends BaseConfig
      * @var array<string, array<string, array<string, string>>>|array<string, array<string>>
      * @phpstan-var array<string, list<string>>|array<string, array<string, array<string, string>>>
      */
-    public array $globals = [
+   /*  public array $globals = [
         'before' => [
             // 'honeypot',
             // 'csrf',
@@ -44,7 +44,7 @@ class Filters extends BaseConfig
             // 'honeypot',
             // 'secureheaders',
         ],
-    ];
+    ]; */
 
     /**
      * List of filter aliases that works on a

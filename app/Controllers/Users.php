@@ -90,10 +90,9 @@ class Users extends BaseController
                 return $file != $imageName;
             });
 
-            $data = ['file' => json_encode($currentFiles)];
+            $data = ['file' => json_encode(array_values($currentFiles))];
 
             $model->update($user_id, $data);
-
 
             return redirect()->to(base_url() . 'users/' . $user_id);
         }
@@ -102,7 +101,7 @@ class Users extends BaseController
     public function edit($id)
     {
         $model = new UsersModel();
-        $data['users'] = $model->get_by_id($id);
+        $data['user'] = $model->get_by_id($id);
         echo view('header', $data);
         echo view('Users/edit', $data);
         echo view('footer');
@@ -114,12 +113,10 @@ class Users extends BaseController
 
         if ($this->request->getMethod() === 'post') {
             $data = [
-                'email' => $this->request->getPost('email'), 
                 'password' => $this->request->getPost('password'), 
                 'name' => $this->request->getPost('name')
             ];
             $model->update($id, $data);
-
             return redirect()->to(base_url() . 'users/' . session()->user);
         }
     }

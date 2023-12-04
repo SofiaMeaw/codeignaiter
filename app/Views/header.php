@@ -10,14 +10,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
     <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 
+    <link rel="stylesheet" href="<?php echo base_url('css/app.css'); ?>" />
     <title>Usuarios</title>
 </head>
 
 <body>
+    <header>
     <?php if (isset(session()->user)) { ?>
         <h1>Bienvenidx <?= session()->name ?></h1>
         <br>
-        <a href="logout">Cerrar sesión</a>
+        <a href="logout" class="link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">Cerrar sesión</a>
     <?php } ?>
 
     <?php if (!empty($errors)) : ?>
@@ -27,4 +29,5 @@
             <?php endforeach ?>
         </div>
     <?php endif ?>
+    </header>
 

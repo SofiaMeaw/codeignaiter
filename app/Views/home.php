@@ -21,7 +21,7 @@
             <input type="password" pattern="[0-9A-Za-z]{8}" name="password" title="La contraseña debe ser de 8 caracteres alfanuméricos puede contener mayúsculas y minúsculas" required>
             <br>
 
-            <button type="submit" name="submit" class="btn btn-primary">Iniciar sesion</button>
+            <button type="submit" name="submit" class="btn btn-secondary">Iniciar sesion</button>
         </div>
     </form>
 </div>
@@ -49,7 +49,7 @@
             <input type="password" pattern="[0-9A-Za-z]{8}" name="passwordRep" title="La contraseña debe ser de 8 caracteres alfanuméricos puede contener mayúsculas y minúsculas" required>
             <br>
 
-            <button type="submit" name="createUser" class="btn btn-primary">Crear usuario</button>
+            <button type="submit" name="createUser" class="btn btn-secondary">Crear usuario</button>
         </div>
     </form>
 </div>
